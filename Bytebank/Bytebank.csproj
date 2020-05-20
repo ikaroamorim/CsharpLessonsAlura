@@ -45,6 +45,9 @@
   <ItemGroup>
     <Compile Include="Cliente.cs" />
     <Compile Include="ContaCorrente.cs" />
+    <Compile Include="Funcionarios\Diretor.cs" />
+    <Compile Include="Funcionarios\Funcionario.cs" />
+    <Compile Include="GerenciadorBonificacao.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

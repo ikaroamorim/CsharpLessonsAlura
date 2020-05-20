@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Bytebank.Funcionarios;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -10,10 +11,10 @@ namespace Bytebank
   {
     static void Main(string[] args)
     {
-      ContaCorrente contaBruno = new ContaCorrente(4679, 59488);
       ContaCorrente contaGabriela = new ContaCorrente(4679, 37289);
+
+      ContaCorrente contaBruno = new ContaCorrente(4679, 59488);
       Cliente bruno = new Cliente();
-      Cliente gabriela = new Cliente();
 
       contaBruno.Depositar(500);
       contaGabriela.Depositar(900);
@@ -29,6 +30,25 @@ namespace Bytebank
       // usando os gets e sets criados nas propriedades
       contaBruno.Saldo = -10;
       Console.WriteLine("Saldo da Conta do Bruno: R$" + contaBruno.Saldo);
+
+      GerenciadorBonificacao gerenciador = new GerenciadorBonificacao();
+
+      Funcionario carlos = new Funcionario();
+      carlos.Nome = "Carlos";
+      carlos.Cpf = "123.456.789-00";
+      carlos.Salario = 2000;
+      gerenciador.Registrar(carlos);
+
+
+      Funcionario pedro = new Diretor();
+      pedro.Nome = "Pedro";
+      pedro.Cpf = "123.456.789-00";
+      pedro.Salario = 5000;
+      gerenciador.Registrar(pedro);
+
+      Console.WriteLine(carlos.Nome + carlos.getBonificacao());
+      Console.WriteLine(pedro.Nome + pedro.getBonificacao());
+      Console.WriteLine(gerenciador.GetTotalBonificacao());
     }
   }
 }
