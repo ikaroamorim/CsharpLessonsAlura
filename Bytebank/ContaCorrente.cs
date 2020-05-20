@@ -1,41 +1,43 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Dynamic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-
-namespace ByteBank
+namespace Bytebank
 {
   public class ContaCorrente
   {
-    public Cliente titular;
-    public int agencia;
-    public int numero;
-    private double saldo;
-
-    public double GetSaldo()
+    public Cliente Titular { get; set; }
+    public int Agencia { get; set; }
+    public int Numero { get; set; }
+    private double _saldo;
+    
+    public double Saldo
     {
-      return saldo;
-    }
-
-    public void SetSaldo(double saldo)
-    {
-      if (saldo < 0)
+      get
       {
-        return;
+        return _saldo;
       }
-      else
+      set
       {
-        this.saldo = saldo;
+        if (value < 0)
+        {
+          return;
+        }
+        else
+        {
+          _saldo = value;
+        }
       }
     }
 
     public bool Sacar(double valor)
     {
-      if (saldo >= valor && valor > 0)
+      if (_saldo >= valor && valor > 0)
       {
-        saldo -= valor;
+        _saldo -= valor;
         Console.WriteLine("Realizado saque de R$" + valor + ".");
         return true;
       }
@@ -50,7 +52,7 @@ namespace ByteBank
     {
       if (valor >= 0)
       {
-        saldo += valor;
+        _saldo += valor;
         Console.WriteLine("Deposito realizado com sucesso");
       }
       else
@@ -61,7 +63,7 @@ namespace ByteBank
 
     public bool Transferencia(double valor, ContaCorrente contaDestino)
     {
-      if (saldo >= valor && valor > 0)
+      if (_saldo >= valor && valor > 0)
       {
         Sacar(valor);
         contaDestino.Depositar(valor);

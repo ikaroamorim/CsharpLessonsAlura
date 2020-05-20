@@ -1,0 +1,7 @@
+C:\TFS\ikaroamorim\CsharpLessonsAlura\Bytebank\bin\Debug\Bytebank.exe.config
+C:\TFS\ikaroamorim\CsharpLessonsAlura\Bytebank\bin\Debug\Bytebank.exe
+C:\TFS\ikaroamorim\CsharpLessonsAlura\Bytebank\bin\Debug\Bytebank.pdb
+C:\TFS\ikaroamorim\CsharpLessonsAlura\Bytebank\obj\Debug\Bytebank.csprojAssemblyReference.cache
+C:\TFS\ikaroamorim\CsharpLessonsAlura\Bytebank\obj\Debug\Bytebank.csproj.CoreCompileInputs.cache
+C:\TFS\ikaroamorim\CsharpLessonsAlura\Bytebank\obj\Debug\Bytebank.exe
+C:\TFS\ikaroamorim\CsharpLessonsAlura\Bytebank\obj\Debug\Bytebank.pdb
