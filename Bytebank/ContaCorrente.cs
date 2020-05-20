@@ -9,11 +9,13 @@ namespace Bytebank
 {
   public class ContaCorrente
   {
+    public static int TotalContas { get; private set; }
     public Cliente Titular { get; set; }
     public int Agencia { get; set; }
     public int Numero { get; set; }
-    private double _saldo;
     
+    // quando for expandir precisa dessa estrutura
+    private double _saldo;
     public double Saldo
     {
       get
@@ -31,6 +33,13 @@ namespace Bytebank
           _saldo = value;
         }
       }
+    }
+
+    public ContaCorrente(int agencia, int numero)
+    {
+      Agencia = agencia;
+      Numero = numero;
+      TotalContas++;
     }
 
     public bool Sacar(double valor)

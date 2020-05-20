@@ -10,8 +10,8 @@ namespace Bytebank
   {
     static void Main(string[] args)
     {
-      ContaCorrente contaBruno = new ContaCorrente();
-      ContaCorrente contaGabriela = new ContaCorrente();
+      ContaCorrente contaBruno = new ContaCorrente(4679, 59488);
+      ContaCorrente contaGabriela = new ContaCorrente(4679, 37289);
       Cliente bruno = new Cliente();
       Cliente gabriela = new Cliente();
 
@@ -23,10 +23,8 @@ namespace Bytebank
       bruno.Cpf = "123.456.789-00";
       bruno.Profissao = "estudante";
       contaBruno.Titular = bruno;
-      contaBruno.Numero = 22481122;
-      contaBruno.Agencia = 4679;
 
-      
+      Console.WriteLine("Número de constas: " + ContaCorrente.TotalContas);
 
       // usando os gets e sets criados nas propriedades
       contaBruno.Saldo = -10;
