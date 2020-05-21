@@ -1,17 +1,16 @@
-﻿using Bytebank.Funcionarios;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Bytebank.Sistemas
+namespace Bytebank.Funcionarios
 {
-  public abstract class Autenticavel : Funcionario
+  public abstract class FuncionarioAutenticavel : Funcionario, IAutenticavel
   {
     public string Senha { get; set; }
 
-    public Autenticavel(double salario, string cpf): base(cpf, salario)
+    public FuncionarioAutenticavel(string cpf, double salario) : base(cpf, salario)
     {
 
     }
@@ -20,5 +19,5 @@ namespace Bytebank.Sistemas
     {
       return senha == Senha;
     }
-  }
+  } 
 }

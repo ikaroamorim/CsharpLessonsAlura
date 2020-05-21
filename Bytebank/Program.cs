@@ -68,13 +68,18 @@ namespace Bytebank
       denis.Nome = "denis";
       denis.Senha = "456aa";
 
+      ParceiroComercial eduardo = new ParceiroComercial();
+      eduardo.Senha = "213";
+
 
       sistemaInterno.Logar(carlos, "123");
       sistemaInterno.Logar(carlos, "321");
 
       sistemaInterno.Logar(denis, "456aa");
-      sistemaInterno.Logar(carlos, "321");
+      sistemaInterno.Logar(denis, "321");
 
+      sistemaInterno.Logar(eduardo, "321");
+      sistemaInterno.Logar(eduardo, "213");
     }
 
     public static void CalcularBonificacao()
