@@ -6,11 +6,11 @@ using System.Threading.Tasks;
 
 namespace Bytebank.Funcionarios
 {
-  public class GerenteConta : Funcionario
+  public class Desenvolvedor : Funcionario
   {
-    public GerenteConta(string cpf) : base(cpf, 4000)
+    public Desenvolvedor(string cpf) : base(cpf, 3500)
     {
-
+       
     }
 
     public override void AumentarSalario()
