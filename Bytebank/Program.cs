@@ -11,7 +11,7 @@ namespace Bytebank
   {
     static void Main(string[] args)
     {
-      ContaCorrente contaGabriela = new ContaCorrente(4679, 37289);
+      /*ContaCorrente contaGabriela = new ContaCorrente(4679, 37289);
 
       ContaCorrente contaBruno = new ContaCorrente(4679, 59488);
       Cliente bruno = new Cliente();
@@ -33,22 +33,48 @@ namespace Bytebank
 
       GerenciadorBonificacao gerenciador = new GerenciadorBonificacao();
 
-      Funcionario carlos = new Funcionario();
+      Funcionario carlos = new Funcionario("123.456.789 - 00",2000);
       carlos.Nome = "Carlos";
-      carlos.Cpf = "123.456.789-00";
-      carlos.Salario = 2000;
+      
       gerenciador.Registrar(carlos);
 
 
-      Funcionario pedro = new Diretor();
+      Funcionario pedro = new Diretor("123.456.789 - 00",5000);
       pedro.Nome = "Pedro";
-      pedro.Cpf = "123.456.789-00";
-      pedro.Salario = 5000;
       gerenciador.Registrar(pedro);
 
       Console.WriteLine(carlos.Nome + carlos.getBonificacao());
       Console.WriteLine(pedro.Nome + pedro.getBonificacao());
       Console.WriteLine(gerenciador.GetTotalBonificacao());
+
+      Console.WriteLine(carlos.Salario + "antes do aumento" );
+      carlos.AumentarSalario();
+      Console.WriteLine(carlos.Salario + "depois do aumento");*/
+
+      CalcularBonificacao();
+    }
+
+    public static void CalcularBonificacao()
+    {
+      GerenciadorBonificacao gerenciador = new GerenciadorBonificacao();
+
+      Auxiliar alexandre = new Auxiliar("123.456.789-77");
+      alexandre.Nome = "alexandre";
+      gerenciador.Registrar(alexandre);
+      Designer beatriz = new Designer("123.456.789-77");
+      beatriz.Nome = "beatriz";
+      beatriz.AumentarSalario();
+      gerenciador.Registrar(beatriz);
+      Diretor carlos = new Diretor("123.456.789-77");
+      carlos.Nome = "carlos";
+      gerenciador.Registrar(carlos);
+      GerenteConta denis = new GerenteConta("123.456.789-77");
+      denis.Nome = "denis";
+      gerenciador.Registrar(denis);
+
+      Console.WriteLine("Total de bonificações do mês: R$" + gerenciador.GetTotalBonificacao());
+
+
     }
   }
 }
