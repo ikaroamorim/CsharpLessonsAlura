@@ -14,41 +14,33 @@ namespace Bytebank
     {
       try
       {
-        ContaCorrente c1 = new ContaCorrente(0022, 588776);
+        ContaCorrente c1 = new ContaCorrente(2222, 99999);
+        ContaCorrente c2 = new ContaCorrente(3333, 77777);
         c1.Depositar(50);
-        c1.Sacar(500);
+        c2.Depositar(50);
+        c1.Transferir(500, c2);
       }
       catch (ArgumentException e)
       {
         Console.WriteLine("Exceção de argumento");
-        throw;
+        Console.WriteLine(e.Message);
+        Console.WriteLine(e.StackTrace);
+
       }
-      catch (SaldoInsuficienteException e)
+      catch (OperacaoFinanceiraException e)
       {
         Console.WriteLine("Exceção de saldo");
         Console.WriteLine(e.Message);
-        throw;
+        Console.WriteLine(e.StackTrace);
+        Console.WriteLine("Inner exception" + e.InnerException);
       }
-      
-      
-      //CalcularBonificacao();
-      //UsarSistema();
-
-      /*
-       * Tratamento de Exceções
-       
-
-      try
+      catch (Exception e)
       {
-        MetodoErro();
+        Console.WriteLine(e.Message);
+        Console.WriteLine(e.StackTrace);
+
       }
-      catch (Exception erro)
-      {
-        Console.WriteLine("Mensagem: \n" + erro.Message);
-        Console.WriteLine("StackTrace: \n" + erro.StackTrace);
-        throw;
-      }
-      * */
+              
     }
 
     public static void MetodoErro()

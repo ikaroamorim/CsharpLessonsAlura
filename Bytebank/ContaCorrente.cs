@@ -13,6 +13,8 @@ namespace Bytebank
     public static int TotalContas { get; private set; }
     public Cliente Titular { get; set; }
 
+    public int CounterSaqueInvalido { get; private set; }
+    public int CounterTransfInvalido { get; private set; }
 
     //Os campos Número  e Agencia estão equivalentes, o compilador faz com que ambos se comportem da mesma forma
     private readonly int _agencia;
@@ -69,7 +71,8 @@ namespace Bytebank
       }
       if (_saldo <= valor)
       {
-        throw new SaldoInsuficienteException("Saldo insuficiente para o saque de: R$ " + valor + ".");
+        CounterSaqueInvalido++;
+        throw new SaldoInsuficienteException(_saldo, valor);
       }
       else
       {
@@ -79,31 +82,34 @@ namespace Bytebank
 
     public void Depositar(double valor)
     {
-      if (valor >= 0)
+      if (valor <= 0)
+      {
+        throw new ArgumentException();
+      }
+      else
       {
         _saldo += valor;
         Console.WriteLine("Deposito realizado com sucesso");
       }
-      else
-      {
-        Console.WriteLine("Valor inválido");
-      }
     }
 
-    public bool Transferencia(double valor, ContaCorrente contaDestino)
+    public void Transferir(double valor, ContaCorrente contaDestino)
     {
-      if (_saldo >= valor && valor > 0)
+      //Poderia utilizar o try catch sacar
+      if (valor < 0)
+      {
+        throw new SaldoInsuficienteException(_saldo, valor);
+      }
+      try
       {
         Sacar(valor);
-        contaDestino.Depositar(valor);
-        return true;
       }
-      else
+      catch (SaldoInsuficienteException e)
       {
-        Console.WriteLine("Saldo insuficiente ou informações incorretas");
-        return false;
+        CounterTransfInvalido++;
+        throw new OperacaoFinanceiraException("Operação não realizada.",e);
       }
-
+      contaDestino.Depositar(valor);
     }
   }
 }
