@@ -9,10 +9,16 @@ namespace Bytebank
 {
   public class ContaCorrente
   {
+    public static double TaxaOperacao { get; private set; }
     public static int TotalContas { get; private set; }
     public Cliente Titular { get; set; }
-    public int Agencia { get; set; }
-    public int Numero { get; set; }
+
+
+    //Os campos Número  e Agencia estão definidos da mesma forma, o compilador faz com que ambos se comportem da mesma forma
+    private readonly int _agencia;
+    public int Agencia { get;}
+        
+    public int Numero { get;}
     
     // quando for expandir precisa dessa estrutura
     private double _saldo;
@@ -37,8 +43,10 @@ namespace Bytebank
 
     public ContaCorrente(int agencia, int numero)
     {
-      Agencia = agencia;
-      Numero = numero;
+      _agencia = agencia;
+      _numero = numero;
+      TaxaOperacao = 30 / TotalContas;
+
       TotalContas++;
     }
 
@@ -47,7 +55,7 @@ namespace Bytebank
       if (_saldo >= valor && valor > 0)
       {
         _saldo -= valor;
-        Console.WriteLine("Realizado saque de R$" + valor + ".");
+        Console.WriteLine("Realizado saque de R$" + valor + ". \n Seu novo saldo é R$ " + Saldo);
         return true;
       }
       else

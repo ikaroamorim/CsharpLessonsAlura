@@ -12,49 +12,51 @@ namespace Bytebank
   {
     static void Main(string[] args)
     {
-      /*ContaCorrente contaGabriela = new ContaCorrente(4679, 37289);
+      //CalcularBonificacao();
+      //UsarSistema();
 
-      ContaCorrente contaBruno = new ContaCorrente(4679, 59488);
-      Cliente bruno = new Cliente();
+      /*
+       * Tratamento de Exceções
+       * */
 
-      contaBruno.Depositar(500);
-      contaGabriela.Depositar(900);
-      contaGabriela.Transferencia(200, contaBruno);
-
-      bruno.Nome = "Bruno";
-      bruno.Cpf = "123.456.789-00";
-      bruno.Profissao = "estudante";
-      contaBruno.Titular = bruno;
-
-      Console.WriteLine("Número de constas: " + ContaCorrente.TotalContas);
-
-      // usando os gets e sets criados nas propriedades
-      contaBruno.Saldo = -10;
-      Console.WriteLine("Saldo da Conta do Bruno: R$" + contaBruno.Saldo);
-
-      GerenciadorBonificacao gerenciador = new GerenciadorBonificacao();
-
-      Funcionario carlos = new Funcionario("123.456.789 - 00",2000);
-      carlos.Nome = "Carlos";
-      
-      gerenciador.Registrar(carlos);
-
-
-      Funcionario pedro = new Diretor("123.456.789 - 00",5000);
-      pedro.Nome = "Pedro";
-      gerenciador.Registrar(pedro);
-
-      Console.WriteLine(carlos.Nome + carlos.getBonificacao());
-      Console.WriteLine(pedro.Nome + pedro.getBonificacao());
-      Console.WriteLine(gerenciador.GetTotalBonificacao());
-
-      Console.WriteLine(carlos.Salario + "antes do aumento" );
-      carlos.AumentarSalario();
-      Console.WriteLine(carlos.Salario + "depois do aumento");*/
-
-      CalcularBonificacao();
-      UsarSistema();
+      try
+      {
+        MetodoErro();
+      }
+      catch (Exception erro)
+      {
+        Console.WriteLine("Mensagem: \n" + erro.Message);
+        Console.WriteLine("StackTrace: \n" + erro.StackTrace);
+        throw;
+      }
     }
+
+    public static void MetodoErro()
+    {
+      TestaDivisao(0);
+    }
+    public static void TestaDivisao(int divisor)
+    {
+      int resultado = Dividir(10, divisor);
+    }
+    public static int Dividir(int numero, int divisor)
+    {
+      try
+      {
+        return numero / divisor;
+      }
+      catch (DivideByZeroException)
+      {
+        Console.WriteLine("Erro na divisão de: " + numero + " por: " + divisor);
+        throw;
+      }
+      
+      
+    }
+
+    /*
+     * Fim do teste de Exceções
+     * */
 
     public static void UsarSistema()
     {
