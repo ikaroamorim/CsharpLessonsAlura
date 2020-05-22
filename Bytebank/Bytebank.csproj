@@ -54,6 +54,7 @@
     <Compile Include="Funcionarios\GerenteConta.cs" />
     <Compile Include="GerenciadorBonificacao.cs" />
     <Compile Include="IAutenticavel.cs" />
+    <Compile Include="LeitordeArquivo.cs" />
     <Compile Include="OperacaoFinanceiraException.cs" />
     <Compile Include="ParceiroComercial.cs" />
     <Compile Include="Program.cs" />

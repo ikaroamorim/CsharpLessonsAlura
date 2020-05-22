@@ -2,6 +2,7 @@
 using Bytebank.Sistemas;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -11,6 +12,45 @@ namespace Bytebank
   class Program
   {
     static void Main(string[] args)
+    {
+      CarregarContas();
+
+    }
+
+
+    private static void CarregarContas()
+    {
+      using (LeitordeArquivo leitor = new LeitordeArquivo("contas.txt"))
+      {
+        leitor.LerProximaLinha();
+      }
+
+
+      //
+      //--------------------
+      //
+      //LeitordeArquivo leitor = null;
+      //try
+      //{
+      //  leitor = new LeitordeArquivo("contas.txt");
+      //  leitor.LerProximaLinha();
+      //  leitor.LerProximaLinha();
+      //  leitor.LerProximaLinha();
+      //}
+      //catch (IOException)
+      //{
+      //  Console.WriteLine("Exceção do tipo IO não tratada!");
+      //  throw;
+      //}
+      //finally
+      //{
+      //  if (leitor != null)
+      //    leitor.Fechar();
+      //}
+
+    }
+
+    private static void TestaInnerException()
     {
       try
       {
@@ -40,8 +80,8 @@ namespace Bytebank
         Console.WriteLine(e.StackTrace);
 
       }
-              
     }
+
 
     public static void MetodoErro()
     {
@@ -62,8 +102,8 @@ namespace Bytebank
         Console.WriteLine("Erro na divisão de: " + numero + " por: " + divisor);
         throw;
       }
-      
-      
+
+
     }
 
     /*
