@@ -12,12 +12,31 @@ namespace Bytebank
   {
     static void Main(string[] args)
     {
+      try
+      {
+        ContaCorrente c1 = new ContaCorrente(0022, 588776);
+        c1.Depositar(50);
+        c1.Sacar(500);
+      }
+      catch (ArgumentException e)
+      {
+        Console.WriteLine("Exceção de argumento");
+        throw;
+      }
+      catch (SaldoInsuficienteException e)
+      {
+        Console.WriteLine("Exceção de saldo");
+        Console.WriteLine(e.Message);
+        throw;
+      }
+      
+      
       //CalcularBonificacao();
       //UsarSistema();
 
       /*
        * Tratamento de Exceções
-       * */
+       
 
       try
       {
@@ -29,6 +48,7 @@ namespace Bytebank
         Console.WriteLine("StackTrace: \n" + erro.StackTrace);
         throw;
       }
+      * */
     }
 
     public static void MetodoErro()

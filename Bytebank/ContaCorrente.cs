@@ -14,12 +14,12 @@ namespace Bytebank
     public Cliente Titular { get; set; }
 
 
-    //Os campos Número  e Agencia estão definidos da mesma forma, o compilador faz com que ambos se comportem da mesma forma
+    //Os campos Número  e Agencia estão equivalentes, o compilador faz com que ambos se comportem da mesma forma
     private readonly int _agencia;
-    public int Agencia { get;}
-        
-    public int Numero { get;}
-    
+    public int Agencia { get; }
+
+    public int Numero { get; }
+
     // quando for expandir precisa dessa estrutura
     private double _saldo;
     public double Saldo
@@ -43,25 +43,37 @@ namespace Bytebank
 
     public ContaCorrente(int agencia, int numero)
     {
-      _agencia = agencia;
-      _numero = numero;
-      TaxaOperacao = 30 / TotalContas;
-
-      TotalContas++;
-    }
-
-    public bool Sacar(double valor)
-    {
-      if (_saldo >= valor && valor > 0)
+      if (agencia <= 0)
       {
-        _saldo -= valor;
-        Console.WriteLine("Realizado saque de R$" + valor + ". \n Seu novo saldo é R$ " + Saldo);
-        return true;
+        throw new ArgumentException("Número de Agencia inválido.", nameof(agencia));
+      }
+      if (numero <= 0)
+      {
+        throw new ArgumentException("Número da conta inválido.", nameof(numero));
       }
       else
       {
-        Console.WriteLine("Valor maior que saldo ou inválido");
-        return false;
+        _agencia = agencia;
+        Numero = numero;
+        TotalContas++;
+        TaxaOperacao = 30 / TotalContas;
+      }
+
+    }
+
+    public void Sacar(double valor)
+    {
+      if (valor <= 0)
+      {
+        throw new ArgumentException();
+      }
+      if (_saldo <= valor)
+      {
+        throw new SaldoInsuficienteException("Saldo insuficiente para o saque de: R$ " + valor + ".");
+      }
+      else
+      {
+        Console.WriteLine("Realizado saque de R$" + valor + ". \n Seu novo saldo é R$ " + Saldo);
       }
     }
 
